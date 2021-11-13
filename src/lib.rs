@@ -27,8 +27,6 @@ extern crate serde;
 extern crate serde_json;
 extern crate serde_repr;
 
-
-mod timer;
+pub mod client;
 pub mod handler;
 pub mod raw_client;
-pub mod client;
