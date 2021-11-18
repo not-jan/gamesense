@@ -80,14 +80,18 @@ pub struct RegisterGame<'b> {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Screen {
     #[serde(rename = "has-text")]
-    has_text: bool,
+    pub has_text: bool,
+    #[serde(rename = "image-data")]
+    pub image_data: Vec<u8>,
 }
 
 #[derive(Debug, Clone, Serialize)]
 pub struct ScreenHandler<'b> {
     #[serde(rename = "device-type")]
-    device: &'b str,
-    datas: Vec<Screen>,
+    pub device: &'b str,
+    pub mode: &'b str,
+    pub zone: &'b str,
+    pub datas: Vec<Screen>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -200,6 +204,7 @@ engine_request!(RemoveEvent<'b>,'b, "remove_game_event");
 engine_request!(RegisterGame<'b>,'b, "game_metadata");
 engine_request!(RegisterEvent<'b>,'b, "register_game_event");
 engine_request!(Heartbeat<'b>,'b, "game_heartbeat");
+engine_request!(BindGameEvent<'b>,'b, "bind_game_event");
 
 impl RawGameSenseClient {
     #[cfg(all(not(target_os = "macos"), not(target_os = "windows")))]
