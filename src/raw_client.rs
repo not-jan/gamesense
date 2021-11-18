@@ -92,16 +92,16 @@ impl GameEventData for () {}
 #[derive(Debug, Clone, Serialize, Default)]
 pub struct ScreenFrameData<'a> {
     #[serde_as(as = "Option<Bytes>")]
-    #[serde(rename = "image-data-128x36")]
+    #[serde(rename = "image-data-128x36", skip_serializing_if = "Option::is_none")]
     pub image_128x36: Option<&'a [u8; 576]>,
     #[serde_as(as = "Option<Bytes>")]
-    #[serde(rename = "image-data-128x40")]
+    #[serde(rename = "image-data-128x40", skip_serializing_if = "Option::is_none")]
     pub image_128x40: Option<&'a [u8; 640]>,
     #[serde_as(as = "Option<Bytes>")]
-    #[serde(rename = "image-data-128x48")]
+    #[serde(rename = "image-data-128x48", skip_serializing_if = "Option::is_none")]
     pub image_128x48: Option<&'a [u8; 768]>,
     #[serde_as(as = "Option<Bytes>")]
-    #[serde(rename = "image-data-128x52")]
+    #[serde(rename = "image-data-128x52", skip_serializing_if = "Option::is_none")]
     pub image_128x52: Option<&'a [u8; 852]>,
 }
 
@@ -116,9 +116,13 @@ pub struct GameEvent<'b, D: GameEventData> {
 pub struct RegisterEvent<'b> {
     pub game: &'b str,
     pub event: &'b str,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub min_value: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub max_value: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub icon_id: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub value_optional: Option<bool>,
 }
 
