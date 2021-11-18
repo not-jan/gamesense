@@ -77,6 +77,34 @@ pub struct RegisterGame<'b> {
     pub timeout: Option<u32>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Screen {
+    #[serde(rename = "has-text")]
+    has_text: bool,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct ScreenHandler<'b> {
+    #[serde(rename = "device-type")]
+    device: &'b str,
+    datas: Vec<Screen>,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct BindGameEvent<'b> {
+    pub game: &'b str,
+    pub event: &'b str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_value: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_value: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub icon_id: Option<u32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub value_optional: Option<bool>,
+    pub handlers: Vec<ScreenHandler<'b>>,
+}
+
 pub trait GameEventData {}
 
 impl<'a> GameEventData for FrameContainer<'a> {}
