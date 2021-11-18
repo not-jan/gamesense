@@ -1,12 +1,9 @@
-use crate::handler;
-use crate::raw_client::RawGameSenseClient;
+use crate::{handler, raw_client::RawGameSenseClient};
 use anyhow::{Context, Result};
 use serde::Serialize;
 use serde_json;
-use std::sync::Arc;
-use std::time::Duration;
-use tokio::task::JoinHandle;
-use tokio::time::MissedTickBehavior;
+use std::{sync::Arc, time::Duration};
+use tokio::{task::JoinHandle, time::MissedTickBehavior};
 
 #[derive(Debug)]
 pub struct GameSenseClient {
@@ -20,7 +17,7 @@ impl GameSenseClient {
         game: &str,
         game_display_name: &str,
         developer: &str,
-        deinitialize_timer_length_ms: Option<u16>,
+        deinitialize_timer_length_ms: Option<u32>,
     ) -> Result<GameSenseClient> {
         let client = Self::from_game_name(game)?;
 

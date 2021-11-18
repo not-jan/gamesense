@@ -1,3 +1,5 @@
+#![feature(generic_associated_types, type_alias_impl_trait, const_fn_trait_bound)]
+
 //! SteelSeries GameSense™ client written in Rust
 //!
 //!
@@ -8,14 +10,18 @@
 //! ```
 //!
 //!
-//! To get started, simply instantiate your client using the [`gamesense::client::GameSenseClient`][client::GameSenseClient] struct.
-//! ```
-//! let mut client = GameSenseClient::new("GAME_ID", "Game Display Name", "Author", None)?;
-//! ```
+//! To get started, simply instantiate your client using the
+//! [`gamesense::client::GameSenseClient`][client::GameSenseClient] struct. ```
+//! let mut client = GameSenseClient::new("GAME_ID", "Game Display Name",
+//! "Author", None)?; ```
 //!
-//! In this example, a client is created to the local API and it automatically creates a game with the provided values. Each value
-//! deemed optional by the official documentation can receive `None` as a value to default it to the server's default.
-//! If you wish to have a raw client for the API, you can! Simply use the [`gamesense::raw_client::RawGameSenseClient`][raw_client::RawGameSenseClient]
+//! In this example, a client is created to the local API and it automatically
+//! creates a game with the provided values. Each value deemed optional by the
+//! official documentation can receive `None` as a value to default it to the
+//! server's default. If you wish to have a raw client for the API, you can!
+//! Simply use the
+//! [`gamesense::raw_client::RawGameSenseClient`][raw_client::
+//! RawGameSenseClient]
 //!
 //! For more (in-depth) examples refer to the [examples](https://github.com/ptrstr/gamesense/tree/master/examples)
 //!
