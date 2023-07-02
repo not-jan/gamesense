@@ -1,4 +1,4 @@
-#![feature(generic_associated_types, type_alias_impl_trait, const_fn_trait_bound)]
+#![feature(type_alias_impl_trait, impl_trait_in_assoc_type)]
 
 //! SteelSeries GameSense™ client written in Rust
 //!
